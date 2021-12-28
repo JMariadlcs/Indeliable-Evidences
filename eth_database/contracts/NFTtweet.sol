@@ -12,6 +12,9 @@ import {Base64} from "./libraries/Base64.sol";
 //to the inherited contract's methods.
 contract EvidenceNFT is ERC721URIStorage {
 
+    //Needed for using uint256 as String
+    using Strings for uint256;
+
     //Track of tokenIds provided by OpenZeppelin
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds; //Definition of field ID (unique for each NFT)
@@ -26,7 +29,7 @@ contract EvidenceNFT is ERC721URIStorage {
   
 
   // Function for actually mining the NFT
-  function makeNFT(string memory _tweetURL) public {
+  function makeNFT(string memory _tweetURL, string memory _date) public {
 
     // Get the current tokenId (starts at 0)
     uint256 newItemId = _tokenIds.current();
@@ -34,11 +37,14 @@ contract EvidenceNFT is ERC721URIStorage {
     
 
     //Definitions of the part of the NFT URI
-    string memory EvidenceNFTname = "EvidenceNFT";
+    string memory EvidenceNFTname = "EvidenceNFT #";
     string memory EvidenceNFTdescription = "EvidenceNFT generated for serving as an evidence for the existance of tweet: ";
-    string memory EvidenceNFTtime = "at time: ";
-    string memory nameURI = "EvidenceNFT";
-    string memory descriptionURI = string(abi.encodePacked(EvidenceNFTdescription, _tweetURL, EvidenceNFTtime, block.timestamp));
+    string memory EvidenceNFTtime = " at time: ";
+    string memory descriptionURI = string(abi.encodePacked(EvidenceNFTdescription, _tweetURL, EvidenceNFTtime, _date));
+    string memory itemIDuri = newItemId.toString();
+    string memory NFTnameURI = string(abi.encodePacked(EvidenceNFTname, itemIDuri));
+    
+    
 
     // Get all the JSON metadata in place and base64 encode it.
         string memory json = Base64.encode(
@@ -47,8 +53,8 @@ contract EvidenceNFT is ERC721URIStorage {
                  abi.encodePacked(
                      '{"name": "',
                         // We set the title of our NFT as the generated word.
-                        nameURI,
-                        '", "description": "',_tweetURL,'", "image": "data:image/svg+xml;base64,',
+                        NFTnameURI,
+                        '", "description": "',descriptionURI,'", "image": "data:image/svg+xml;base64,',
                         // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
                         Base64.encode(bytes("PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiIHZpZXdCb3g9IjAgMCAzNTAgMzUwIj4KICAgIDxzdHlsZT4uYmFzZSB7IGZpbGw6IHdoaXRlOyBmb250LWZhbWlseTogc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgfTwvc3R5bGU+CiAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJibGFjayIgLz4KICAgIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBjbGFzcz0iYmFzZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RXBpY0xvcmRIYW1idXJnZXI8L3RleHQ+Cjwvc3ZnPg==")),
                         '"}'
