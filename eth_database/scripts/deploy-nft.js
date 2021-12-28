@@ -1,4 +1,4 @@
-//Execute: npx hardhat run scripts/run-nft.js
+//Execute: npx hardhat run scripts/deploy-nft.js --network rinkeby
 
 const main = async () => {
     const nftContractFactory = await hre.ethers.getContractFactory('EvidenceNFT');
@@ -10,12 +10,12 @@ const main = async () => {
     let txn = await nftContract.makeNFT()
     // Wait for it to be mined.
     await txn.wait()
+    console.log("Minted NFT #1")
   
-    // Mint another NFT for fun.
     txn = await nftContract.makeNFT()
     // Wait for it to be mined.
     await txn.wait()
-  
+    console.log("Minted NFT #2")
   };
   
   const runMain = async () => {
@@ -27,7 +27,5 @@ const main = async () => {
       process.exit(1);
     }
   };
-  
-  runMain();
   
   runMain();
