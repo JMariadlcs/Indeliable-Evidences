@@ -21,12 +21,11 @@ const main = async () => {
     //Calculation of currentTime
     var currentTime = (await getCurrentTime()).toString();
   
-    // Call the function.
+    // Call the function. (Tweet example)
     let txn = await nftContract.makeNFT("https://twitter.com/elonmusk/status/1374617643446063105?lang=es", currentTime);
     // Wait for it to be mined.
-    await txn.wait()
-    console.log("Minted NFT #1")
-  
+    await txn.wait();
+    console.log("⭐Your NFT is already MINTED⭐ Check your OPENSEA account in rinkeby network (may take some minutes to appear).");
   };
   
   const runMain = async () => {

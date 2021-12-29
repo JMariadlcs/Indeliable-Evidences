@@ -20,13 +20,12 @@ contract EvidenceNFT is ERC721URIStorage {
     Counters.Counter private _tokenIds; //Definition of field ID (unique for each NFT)
 
     //Used later to give the users a link to their OpenSea minted NFT! 
-    event NewEpicNFTMinted(address sender, uint256 tokenId);
+    event NewEVIDENCENFTMinted(address sender, uint256 tokenId);
 
     //NFT name and symbol provided in the constructor
     constructor() ERC721 ("EvidenceNFT", "EVIDENCENFT") {
     console.log("This is the EvidenceNFT contract!");
   }
-  
 
   // Function for actually mining the NFT
   function makeNFT(string memory _tweetURL, string memory _date) public {
@@ -34,17 +33,22 @@ contract EvidenceNFT is ERC721URIStorage {
     // Get the current tokenId (starts at 0)
     uint256 newItemId = _tokenIds.current();
 
-    
-
-    //Definitions of the part of the NFT URI
+    //Definitions of the part of the NFT JSON
+    //NFTnameURI
     string memory EvidenceNFTname = "EvidenceNFT #";
-    string memory EvidenceNFTdescription = "EvidenceNFT generated for serving as an evidence for the existance of tweet: ";
-    string memory EvidenceNFTtime = " at time: ";
-    string memory descriptionURI = string(abi.encodePacked(EvidenceNFTdescription, _tweetURL, EvidenceNFTtime, _date));
     string memory itemIDuri = newItemId.toString();
     string memory NFTnameURI = string(abi.encodePacked(EvidenceNFTname, itemIDuri));
     
+    //descriptionURI
+    string memory EvidenceNFTdescription = "EvidenceNFT generated for serving as an evidence for the existance of tweet: ";
+    string memory EvidenceNFTtime = " at time: ";
+    string memory descriptionURI = string(abi.encodePacked(EvidenceNFTdescription, _tweetURL, EvidenceNFTtime, _date));
     
+    //finalSVGuri
+    string memory firstpartSVG = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'> INDELIABLE ENVIDENCES <tspan x='50%' y='10%' alignment-baseline='text-before-edge'  textLength='250' lengthAdjust='spacingAndGlyphs' >";
+    string memory secondpartSVG = "</tspan><tspan x='50%' y='30%' alignment-baseline='text-before-edge'  textLength='250' lengthAdjust='spacingAndGlyphs' >";
+    string memory finalSVGuri = string(abi.encodePacked(firstpartSVG, _tweetURL, secondpartSVG, _date,  "</tspan></text></svg>"));
+
 
     // Get all the JSON metadata in place and base64 encode it.
         string memory json = Base64.encode(
@@ -56,7 +60,7 @@ contract EvidenceNFT is ERC721URIStorage {
                         NFTnameURI,
                         '", "description": "',descriptionURI,'", "image": "data:image/svg+xml;base64,',
                         // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
-                        Base64.encode(bytes("PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiIHZpZXdCb3g9IjAgMCAzNTAgMzUwIj4KICAgIDxzdHlsZT4uYmFzZSB7IGZpbGw6IHdoaXRlOyBmb250LWZhbWlseTogc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgfTwvc3R5bGU+CiAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJibGFjayIgLz4KICAgIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBjbGFzcz0iYmFzZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RXBpY0xvcmRIYW1idXJnZXI8L3RleHQ+Cjwvc3ZnPg==")),
+                        Base64.encode(bytes(finalSVGuri)),
                         '"}'
                     )
                 )
@@ -64,25 +68,25 @@ contract EvidenceNFT is ERC721URIStorage {
         );
     
     // Just like before, we prepend data:application/json;base64, to our data..
-    string memory finalTokenUri = string(
+    string memory finalUri = string(
         abi.encodePacked("data:application/json;base64,", json)
     );
 
         console.log("\n--------------------");
-        console.log(finalTokenUri);
+        console.log(finalUri);
         console.log("--------------------\n");
 
      //Actually mint the NFT to the sender using msg.sender.
     _safeMint(msg.sender, newItemId);
 
     // Set the NFTs data.
-    _setTokenURI(newItemId, finalTokenUri);
+    _setTokenURI(newItemId, finalUri);
 
     // Increment the counter for when the next NFT is minted.
     _tokenIds.increment();
     console.log("An EvidenceNFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
     //Used to give the users their link to the minted NFT when the block is already minted!
-    emit NewEpicNFTMinted(msg.sender, newItemId);
+    emit NewEVIDENCENFTMinted(msg.sender, newItemId);
   }
 }
