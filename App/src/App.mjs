@@ -9,8 +9,8 @@ dotenv.config();
     //Create a variable here that holds the contract address after you deploy!
     /*ContractAddress and contractABI must be changed everytime our contract is deployed
     as contract are inmutables (all variables will be reseted)*/
-    const contractAddressdatabase = "0x983A29E9EEEe5cf851C6F2D99acfBc864637b747";
-    const contractAddressNFT = "0x287B72B703Fd770ad8585372d84D641E422792Fe";
+    const contractAddressdatabase = "0x1aAA08e2a582D47B34963FF29F8A74b2027669D4";
+    const contractAddressNFT = "0xF2f73513B6a5B07b1B6B09477F64b84229E8C8F5";
 
     //Contract address we get when deploy our contract on the backed in Rinkeby testnet
     const contractABIdatabase = abi.abi; //From the artifacts json generated in backend
@@ -33,6 +33,7 @@ const storeTweet = async (_tweet) =>  {
         console.log("Mining block...");
         const txReceipt = await txResponse.wait();
         console.log(txReceipt);
+        console.log("💥Your Evidence is already stored on the database.")
 
 
     }catch(error){
@@ -96,7 +97,7 @@ const main = async () =>{
                bool_input_correct = true;
                //New data input by console
                 stdin.addListener("data", function(d2){
-                console.log("Tweet-url introduced by user: " + d2);
+                console.log("Evidence URL introduced by user: " + d2);
                 storeTweet(d2.toString().trim());
                 
                 process.stdin.destroy();
