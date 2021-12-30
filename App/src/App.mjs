@@ -72,67 +72,49 @@ const readStoredTweets = async () => {
         const contract = new ethers.Contract(contractAddressdatabase, contractABIdatabase, signer);
 
         const numberTweets = await contract.getTotalTweets(); //Returned uint
-        console.log ("The number of total tweet stored is: " + numberTweets);
+        console.log ("The number of total stored evidences is: " + numberTweets);
 
         const allTweets = await contract.getAllTweets(); //Returned array
-        console.log("Every tweet stored: " + allTweets);
+        console.log("Every stored evidence: " + allTweets);
 
     }catch(error){
         console.log(error.toString);
     }
 }
 
-//Function used to calculate a Timestamp for the NFT
-const getCurrentTime = async () => {
-    var currentdate = new Date(); 
-    var datetime = "Last Sync: " + currentdate.getDate() + "/"
-                    + (currentdate.getMonth()+1)  + "/" 
-                    + currentdate.getFullYear() + " @ "  
-                    + currentdate.getHours() + ":"  
-                    + currentdate.getMinutes() + ":" 
-                    + currentdate.getSeconds();
-        
-        return datetime;
-}
+const main = async () =>{
 
-
-async function main(){
-
-    console.log("Do you want to: \n -Store a tweet in database (type: '1') \n -Store a tweet in database + mint EvidenceNFT (type: '2') \n -Show all stored tweets (type: '3').");
+    console.log("Do you want to: \n -Store an evidence in database (type: '1') \n -Store an evidence in database + mint EvidenceNFT (type: '2') \n -Show all stored evidences (type: '3').");
     var stdin = process.openStdin();
-    var boolintroduced = false;
-    var boolstored = false;
-    var boolminted = false;
+    var bool_input_correct = false
 
     stdin.addListener("data", function(d) {
 
             //Case user want to store a tweet in database
             if(d==1) {
-               console.log("Introduce tweet-url you want to save in database (make sure url does exist at this moment, otherwise wrong url will be saved but wont serve as a proof for you in case you need it in the future");
-                
-               boolintroduced = true;
+               console.log("Introduce evidence URL you want to save in database (make sure url does exist at this moment, otherwise wrong url will be saved but wont serve as a proof for you in case you need it in the future");
+               bool_input_correct = true;
                //New data input by console
                 stdin.addListener("data", function(d2){
                 console.log("Tweet-url introduced by user: " + d2);
                 storeTweet(d2.toString().trim());
-                boolstored = true;
+                
                 process.stdin.destroy();
                 });
 
             //Case user only want to store in database + mintNFT
             }else if(d==2) {
-                console.log("Introduce tweet-url you want to save in database + EvidenceNFT mint (make sure url does exist at this moment, otherwise wrong url will be saved but wont serve as a proof for you in case you need it in the future");
-                stdin.addListener("data", function(d2){   
+                console.log("Introduce evidence URL you want to save in database + EvidenceNFT mint (make sure url does exist at this moment, otherwise wrong url will be saved but wont serve as a proof for you in case you need it in the future");
+                bool_input_correct = true;
 
-                    console.log("Tweet-url introduced by user: " + d2);
+                stdin.addListener("data", function(d2){   
+                    console.log("Evidence URL introduced by user: " + d2);
 
                     //Calculation of Timestamp               
                     var timestamp = Date();
-                    console.log("THIS IS DATE" + timestamp);
-                    storeTweet(d2.toString().trim());
-                    mintNFT(d2.toString().trim(), timestamp);
-                    boolminted = true;
-                    boolstored = true;
+                    
+                    //Store and minting function calls
+                    storeTweet(d2.toString().trim()).then(() => mintNFT(d2.toString().trim(), timestamp));
 
                     process.stdin.destroy();
                 });
@@ -144,7 +126,7 @@ async function main(){
             
             //Case when wrong input is introduced
             }else{
-                if (boolintroduced == false && boolminted == false){
+                if ((bool_input_correct == false)){
                     console.log("Wrong input, execute program again.");
                     }
                     process.stdin.destroy();
