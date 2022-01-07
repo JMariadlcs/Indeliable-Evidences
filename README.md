@@ -101,8 +101,8 @@ After that you will be asked for choosing between:
 
 
 - Store an evidence in database (type: '1')
-    - Store an evidence in database + mint EvidenceNFT (type: '2')
-    - Show all stored evidences (type: '3')
+- Store an evidence in database + mint EvidenceNFT (type: '2')
+- Show all stored evidences (type: '3')
 
 If you choose the first and second options you will need to introduce a tweet URL and it will be stored on the database and in the second case a ERC-721 standard token (NFT) will be generated containing the tweet url + timestamp in the image and description.
 
