@@ -2,9 +2,7 @@
 <img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/logo.png" />
 </p>
 
-<badges align = "center">
- <img src = "https://img.shields.io/github/languages/count/JMariadlcs/Indeliable-Evidences" />  <img src = "https://img.shields.io/github/last-commit/JMariadlcs/Indeliable-Evidences" /> <a href =  "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/CONTRIBUTING.md"> <img src = "https://img.shields.io/badge/contributions-welcome-orange.svg" /></a>  <img src = "https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat" /> 
-</badges>
+![GitHub language count](https://img.shields.io/github/languages/count/JMariadlcs/Indeliable-Evidences) ![GitHub last commit](https://img.shields.io/github/last-commit/JMariadlcs/Indeliable-Evidences) ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)  ![donations](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat)
 
 A timestamping service over Bitcoin blockchain and a parallel process for proving ownership by ERC-721 standar and token generation developed on a Ethereum database implementation.
 
