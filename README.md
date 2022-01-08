@@ -104,8 +104,8 @@ After that you will be asked for choosing between:
 
 
 - Store an evidence in database (type: '1')
-    - Store an evidence in database + mint EvidenceNFT (type: '2')
-    - Show all stored evidences (type: '3')
+- Store an evidence in database + mint EvidenceNFT (type: '2')
+- Show all stored evidences (type: '3')
 
 If you choose the first and second options you will need to introduce a tweet URL and it will be stored on the database and in the second case a ERC-721 standard token (NFT) will be generated containing the tweet url + timestamp in the image and description.
 
@@ -124,7 +124,9 @@ Indeliable Evidences is an open-source project.
 # Donations
 
 Donations are always helpfull for open-source project developers🤠
+
 &#8594; Ethereum address: 0x0aEbeBee37D530961e05FF525409801Ab97341dE
+
 &#8594; Bitcoin address: 1E4Yr47RPL1CDrRe3SrnmkwQPHguMB3gaz
 
 
