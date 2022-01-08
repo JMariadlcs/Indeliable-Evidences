@@ -2,7 +2,12 @@
 <img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/logo.png" />
 </p>
 
+![GitHub language count](https://img.shields.io/github/languages/count/JMariadlcs/Indeliable-Evidences) ![GitHub last commit](https://img.shields.io/github/last-commit/JMariadlcs/Indeliable-Evidences) ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)  ![donations](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat)
+
 A Timestamping service over Bitcoin blockchain and a parallel process for proving ownership by ERC-721 standar and token generation developed on a Ethereum database implementation.
+
+[Usage](#Usage)
+
 
 # Features
 - Tweet timestamping over Bitcoin blockchain.
@@ -32,16 +37,8 @@ Indeliable Evidence is formed by two parallel processes, the [Bitcoin timestampi
 
 Both processes form a whole timestamping and verification project whose prototype is detailed below.
 
-&#8594; **Timestamping process**
-
 <p align = "center">
-<img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/prototype_design/timestamping_process.png" />
-</p>
-
-&#8594; **Verification process**
-
-<p align = "center">
-<img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/prototype_design/verification_process.png" />
+<img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/prototype_design/FULLSERVICE.png" />
 </p>
 
 ## BITCOIN TIMESTAMPING AND VERFICIATION
@@ -109,8 +106,8 @@ After that you will be asked for choosing between:
 
 
 - Store an evidence in database (type: '1')
-- Store an evidence in database + mint EvidenceNFT (type: '2')
-- Show all stored evidences (type: '3')
+    - Store an evidence in database + mint EvidenceNFT (type: '2')
+    - Show all stored evidences (type: '3')
 
 If you choose the first and second options you will need to introduce a tweet URL and it will be stored on the database and in the second case a ERC-721 standard token (NFT) will be generated containing the tweet url + timestamp in the image and description.
 
@@ -119,6 +116,7 @@ After some minutes you can have a look to your NFT using [Opensea Rinkeby](https
 # Contributing
 
 Contributions are welcome!⭐
+Please take a look at the [contributing](https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/CONTRIBUTING.md) guidelines if you are willing to help!
 
 # Licence
 
@@ -127,9 +125,7 @@ Indeliable Evidences is an open-source project.
 # Donations
 
 Donations are always helpfull for open-source project developers🤠
-
 &#8594; Ethereum address: 0x0aEbeBee37D530961e05FF525409801Ab97341dE
-
 &#8594; Bitcoin address: 1E4Yr47RPL1CDrRe3SrnmkwQPHguMB3gaz
 
 
