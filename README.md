@@ -32,8 +32,16 @@ Indeliable Evidence is formed by two parallel processes, the [Bitcoin timestampi
 
 Both processes form a whole timestamping and verification project whose prototype is detailed below.
 
+&#8594; Timestamping process
+
 <p align = "center">
-<img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/prototype_design/FULLSERVICE.png" />
+<img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/prototype_design/timestamping_process.png" />
+</p>
+
+&#8594; Verification process
+
+<p align = "center">
+<img src = "https://github.com/JMariadlcs/Indeliable-Evidences/blob/main/prototype_design/verification_process.png" />
 </p>
 
 ## BITCOIN TIMESTAMPING AND VERFICIATION
