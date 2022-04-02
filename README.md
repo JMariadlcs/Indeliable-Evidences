@@ -6,6 +6,7 @@
 
 A timestamping service over Bitcoin blockchain and a parallel process for proving ownership by ERC-721 standar and token generation developed on a Ethereum database implementation.
 
+The code include in this repository is part of the final degree [thesis](https://www.researchgate.net/publication/359618501_Timestamping_Service_over_Bitcoin_Blockchain_and_Prove_of_Ownership_by_ERC-721_Standard_and_Ethereum_database_implementation) from my Telecommunications Engineering degree.
 
 # Features
 - Tweet timestamping over Bitcoin blockchain.
@@ -125,9 +126,10 @@ Indeliable Evidences is an open-source project.
 
 Donations are always helpfull for open-source project developers🤠
 
-&#8594; Ethereum address: 0x0aEbeBee37D530961e05FF525409801Ab97341dE
+&#8594; Ethereum (ERC-20) address: 0x0aEbeBee37D530961e05FF525409801Ab97341dE
+&#8594; Polygon address: 0x0aEbeBee37D530961e05FF525409801Ab97341dE
 
-&#8594; Bitcoin address: 1E4Yr47RPL1CDrRe3SrnmkwQPHguMB3gaz
+
 
 
 
